@@ -15,7 +15,7 @@ SysRow is a CLI-based background task manager tool designed for Linux environmen
 
 ```bash
 # Clone the repository
-git clone https://github.com/Can/sysrow.git
+git clone https://github.com/erencanucarr/sysrow.git
 
 # Build the binary
 cd sysrow
