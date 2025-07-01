@@ -1,0 +1,139 @@
+{
+  "app_name": "SysRow",
+  "help_title": "SysRow - Yardım Dosyası",
+  "app_description": "SysRow, Linux ortamında görevleri sıraya almak, ertelemek, gruplayarak çalıştırmak ve geçmişi izlemek gibi işlemleri destekleyen CLI tabanlı bir arka plan görev yöneticisidir.",
+  
+  "main_menu": {
+    "title": "Lütfen görüntülemek istediğiniz bölümü seçin:",
+    "basic_commands": "Temel Komutlar",
+    "example_scenarios": "Örnek Senaryolar",
+    "additional_info": "Ek Bilgiler",
+    "exit": "Çıkış",
+    "prompt": "Seçiminiz: ",
+    "invalid_choice": "Geçersiz seçim, lütfen tekrar deneyin."
+  },
+  
+  "navigation": {
+    "back": "Geri",
+    "exit": "Çıkış",
+    "continue": "Devam etmek için Enter tuşuna basın...",
+    "return_to_main": "Ana menüye dönmek için Enter tuşuna basın..."
+  },
+  
+  "commands_menu": {
+    "title": "Temel Komutlar",
+    "prompt": "Lütfen detaylarını görmek istediğiniz komutu seçin:",
+    "queue": "Görev Sıralama (queue)",
+    "delay": "Zamanlama (delay)",
+    "group": "Görev Gruplama (group)",
+    "run": "Arkaplan İşletme (run --bg)",
+    "status": "Görev Listesi ve Durumu (list, status, logs)",
+    "cancel": "Kaldır / İptal Et (cancel)"
+  },
+  
+  "command_details": {
+    "queue": {
+      "title": "Görev Sıralama (Queueing):",
+      "description": "Bir görevi sıraya ekler.",
+      "usage": "Kullanım:",
+      "example1": "$ sysrow queue \"rsync -avz . backup:/data\"",
+      "example2": "$ sysrow queue \"npm run build\" --priority high",
+      "options": "Seçenekler:",
+      "option_priority": "--priority, -p  Görev önceliği (low, normal, high)"
+    },
+    "delay": {
+      "title": "Zamanlama (Delay):",
+      "description": "Bir görevi belirli bir zamanda veya belirli bir süre sonra çalıştırır.",
+      "usage": "Kullanım:",
+      "example1": "$ sysrow delay \"npm run build\" --at \"02:00\"",
+      "example2": "$ sysrow delay \"shutdown -r now\" --after \"5h\"",
+      "options": "Seçenekler:",
+      "option_at": "--at     Belirli bir saatte çalıştır (HH:MM formatında)",
+      "option_after": "--after  Belirli bir süre sonra çalıştır (5m, 2h, 1d gibi)"
+    },
+    "group": {
+      "title": "Görev Gruplama:",
+      "description": "İlişkili görevleri gruplar halinde yönetir.",
+      "usage": "Kullanım:",
+      "example1": "$ sysrow group create deploy",
+      "example2": "$ sysrow group add deploy \"restart nginx\"",
+      "example3": "$ sysrow group add deploy \"reload apache\"",
+      "example4": "$ sysrow group run deploy",
+      "example5": "$ sysrow group delete deploy"
+    },
+    "run": {
+      "title": "Arkaplan İşletme (Detached Mode):",
+      "description": "Bir görevi arka planda çalıştırır.",
+      "usage": "Kullanım:",
+      "example1": "$ sysrow run \"heavy-process.sh\" --bg"
+    },
+    "status": {
+      "title": "Görev Listesi ve Durumu:",
+      "description": "Görevleri listeler ve durumlarını kontrol eder.",
+      "usage": "Kullanım:",
+      "example1": "$ sysrow list",
+      "example2": "$ sysrow status <id>",
+      "example3": "$ sysrow logs <id>"
+    },
+    "cancel": {
+      "title": "Kaldır / İptal Et:",
+      "description": "Bir görevi iptal eder.",
+      "usage": "Kullanım:",
+      "example1": "$ sysrow cancel <id>"
+    }
+  },
+  
+  "examples": {
+    "title": "Örnek Senaryolar",
+    "backup": {
+      "title": "Gece Yedekleme İşlemi:",
+      "command": "$ sysrow delay \"rsync -avz /var/www/ backup:/var/www/\" --at \"03:00\""
+    },
+    "build": {
+      "title": "Yüksek Öncelikli Derleme İşlemi:",
+      "command": "$ sysrow queue \"make -j4\" --priority high"
+    },
+    "maintenance": {
+      "title": "Sunucu Bakım Grubu Oluşturma:",
+      "command1": "$ sysrow group create maintenance",
+      "command2": "$ sysrow group add maintenance \"service nginx stop\"",
+      "command3": "$ sysrow group add maintenance \"apt-get update && apt-get upgrade -y\"",
+      "command4": "$ sysrow group add maintenance \"service nginx start\"",
+      "command5": "$ sysrow group run maintenance"
+    },
+    "background": {
+      "title": "Uzun Süren İşlemi Arka Planda Çalıştırma:",
+      "command": "$ sysrow run \"find / -type f -name '*.log' -exec gzip {} \\;\" --bg"
+    },
+    "reboot": {
+      "title": "Zamanlanmış Sistem Yeniden Başlatma:",
+      "command": "$ sysrow delay \"shutdown -r now\" --after \"30m\""
+    }
+  },
+  
+  "additional_info": {
+    "title": "Ek Bilgiler",
+    "point1": "Her görev benzersiz bir ID ile izlenir.",
+    "point2": "Görev çıktıları (stdout/stderr) otomatik olarak kaydedilir.",
+    "point3": "Görev metadata'sı (durum, başlangıç zamanı, çıkış kodu vb.) saklanır.",
+    "point4": "Görevler çakışmasın diye locking mekanizması kullanılır.",
+    "point5": "PID takibi yapılarak çöken işlemler tespit edilir.",
+    "more_info": "Daha fazla bilgi için: https://github.com/Can/sysrow"
+  },
+  
+  "cli_messages": {
+    "usage": "Kullanım:",
+    "unknown_command": "Bilinmeyen komut: %s",
+    "help_hint": "Yardım için 'sysrow help' komutunu kullanın.",
+    "missing_argument": "Eksik argüman: %s",
+    "invalid_option": "Geçersiz seçenek: %s",
+    "task_queued": "Görev sıraya alındı. ID: %s",
+    "task_delayed": "Görev zamanlandı. ID: %s",
+    "task_running": "Görev çalışıyor. ID: %s",
+    "task_cancelled": "Görev iptal edildi. ID: %s",
+    "group_created": "Grup oluşturuldu: %s",
+    "group_deleted": "Grup silindi: %s",
+    "task_added_to_group": "Görev gruba eklendi. Grup: %s, Görev ID: %s",
+    "group_running": "Grup çalıştırılıyor: %s"
+  }
+}

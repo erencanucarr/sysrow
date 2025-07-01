@@ -1,0 +1,69 @@
+Lütfen SysMotion adında bir CLI tabanlı arka plan görev yöneticisi aracı geliştir. Bu araç, Linux ortamında görevleri sıraya almak, ertelemek, gruplayarak çalıştırmak ve geçmişi izlemek gibi işlemleri desteklemelidir. cron, at, nice, systemd-timer, nohup gibi klasik araçların işlevlerini modern ve sezgisel bir CLI arayüzüyle tek çatı altında birleştirsin."
+
+🎯 Hedef:
+Modern bir task manager CLI aracı üret. Sysadmin’ler ve geliştiriciler için:
+
+Görevleri ertele,
+
+Önceliklendir,
+
+Gruplandır,
+
+Tekrarla (isteğe bağlı),
+
+Görev geçmişini tut,
+
+Kolay bir komut seti ile hepsini kontrol et.
+
+🔧 Özellik Listesi (MVP için):
+
+Görev Sıralama (Queueing):
+sysmotion queue "rsync -avz . backup:/data"
+
+Zamanlama (Delay):
+sysmotion delay "npm run build" --at "02:00"
+sysmotion delay "shutdown -r now" --after "5h"
+
+Görev Gruplama:
+sysmotion group create deploy
+sysmotion group add deploy "restart nginx"
+sysmotion group run deploy
+
+
+Arkaplan İşletme (Detached Mode):
+sysmotion run "heavy-process.sh" --bg
+
+
+Önceliklendirme:
+sysmotion queue "render video.mp4" --priority high
+
+Görev Listesi ve Durumu:
+sysmotion list
+sysmotion status <id>
+sysmotion logs <id>
+
+
+Kaldır / İptal Et:
+sysmotion cancel <id>
+sysmotion group delete deploy
+
+
+
+💾 Ek Detaylar:
+Her görev benzersiz ID ile izlenebilir.
+
+stdout/stderr çıktılarını sakla (logs/ klasörü).
+
+Görev metadata'sını dosya veya DB ile tut (status, start time, exit code vs.).
+
+Görevler çakışmasın diye locking mekanizması olabilir.
+
+PID takibi yap (çöken işleri göster).
+
+
+Yapı Önerisi:
+
+- Go dili kullanılacak.
+Veri deposu: lokalde bir klasör açsın oraya koysun. 
+CLI Arayüzü: kendin sıfırdan bir CLI arayüzü yazmalısın, herhangi bir repodan veri alma.
+Arkaplan görevleri:  POSIX fork(), subprocess.Popen(), setsid, nohup, & disown, veya systemd-run.

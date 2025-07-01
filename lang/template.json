@@ -1,0 +1,139 @@
+{
+  "app_name": "SysRow",
+  "help_title": "SysRow - Help File",
+  "app_description": "Description of SysRow application",
+  
+  "main_menu": {
+    "title": "Please select the section you want to view:",
+    "basic_commands": "Basic Commands",
+    "example_scenarios": "Example Scenarios",
+    "additional_info": "Additional Information",
+    "exit": "Exit",
+    "prompt": "Your choice: ",
+    "invalid_choice": "Invalid choice, please try again."
+  },
+  
+  "navigation": {
+    "back": "Back",
+    "exit": "Exit",
+    "continue": "Press Enter to continue...",
+    "return_to_main": "Press Enter to return to the main menu..."
+  },
+  
+  "commands_menu": {
+    "title": "Basic Commands",
+    "prompt": "Please select the command you want to learn more about:",
+    "queue": "Task Queueing (queue)",
+    "delay": "Task Scheduling (delay)",
+    "group": "Task Grouping (group)",
+    "run": "Background Processing (run --bg)",
+    "status": "Task List and Status (list, status, logs)",
+    "cancel": "Cancel Tasks (cancel)"
+  },
+  
+  "command_details": {
+    "queue": {
+      "title": "Task Queueing:",
+      "description": "Add a task to the queue.",
+      "usage": "Usage:",
+      "example1": "$ sysrow queue \"rsync -avz . backup:/data\"",
+      "example2": "$ sysrow queue \"npm run build\" --priority high",
+      "options": "Options:",
+      "option_priority": "--priority, -p  Task priority (low, normal, high)"
+    },
+    "delay": {
+      "title": "Task Scheduling:",
+      "description": "Run a task at a specific time or after a delay.",
+      "usage": "Usage:",
+      "example1": "$ sysrow delay \"npm run build\" --at \"02:00\"",
+      "example2": "$ sysrow delay \"shutdown -r now\" --after \"5h\"",
+      "options": "Options:",
+      "option_at": "--at     Run at a specific time (HH:MM format)",
+      "option_after": "--after  Run after a delay (5m, 2h, 1d etc.)"
+    },
+    "group": {
+      "title": "Task Grouping:",
+      "description": "Manage related tasks as groups.",
+      "usage": "Usage:",
+      "example1": "$ sysrow group create deploy",
+      "example2": "$ sysrow group add deploy \"restart nginx\"",
+      "example3": "$ sysrow group add deploy \"reload apache\"",
+      "example4": "$ sysrow group run deploy",
+      "example5": "$ sysrow group delete deploy"
+    },
+    "run": {
+      "title": "Background Processing (Detached Mode):",
+      "description": "Run a task in the background.",
+      "usage": "Usage:",
+      "example1": "$ sysrow run \"heavy-process.sh\" --bg"
+    },
+    "status": {
+      "title": "Task List and Status:",
+      "description": "List tasks and check their status.",
+      "usage": "Usage:",
+      "example1": "$ sysrow list",
+      "example2": "$ sysrow status <id>",
+      "example3": "$ sysrow logs <id>"
+    },
+    "cancel": {
+      "title": "Cancel Tasks:",
+      "description": "Cancel a task.",
+      "usage": "Usage:",
+      "example1": "$ sysrow cancel <id>"
+    }
+  },
+  
+  "examples": {
+    "title": "Example Scenarios",
+    "backup": {
+      "title": "Night Backup Process:",
+      "command": "$ sysrow delay \"rsync -avz /var/www/ backup:/var/www/\" --at \"03:00\""
+    },
+    "build": {
+      "title": "High Priority Build Process:",
+      "command": "$ sysrow queue \"make -j4\" --priority high"
+    },
+    "maintenance": {
+      "title": "Server Maintenance Group Creation:",
+      "command1": "$ sysrow group create maintenance",
+      "command2": "$ sysrow group add maintenance \"service nginx stop\"",
+      "command3": "$ sysrow group add maintenance \"apt-get update && apt-get upgrade -y\"",
+      "command4": "$ sysrow group add maintenance \"service nginx start\"",
+      "command5": "$ sysrow group run maintenance"
+    },
+    "background": {
+      "title": "Running Long Process in Background:",
+      "command": "$ sysrow run \"find / -type f -name '*.log' -exec gzip {} \\;\" --bg"
+    },
+    "reboot": {
+      "title": "Scheduled System Reboot:",
+      "command": "$ sysrow delay \"shutdown -r now\" --after \"30m\""
+    }
+  },
+  
+  "additional_info": {
+    "title": "Additional Information",
+    "point1": "Each task is tracked with a unique ID.",
+    "point2": "Task outputs (stdout/stderr) are automatically logged.",
+    "point3": "Task metadata (status, start time, exit code, etc.) is stored.",
+    "point4": "A locking mechanism is used to prevent task conflicts.",
+    "point5": "PID tracking is used to detect crashed processes.",
+    "more_info": "For more information: https://github.com/Can/sysrow"
+  },
+  
+  "cli_messages": {
+    "usage": "Usage:",
+    "unknown_command": "Unknown command: %s",
+    "help_hint": "Use 'sysrow help' for help.",
+    "missing_argument": "Missing argument: %s",
+    "invalid_option": "Invalid option: %s",
+    "task_queued": "Task queued. ID: %s",
+    "task_delayed": "Task scheduled. ID: %s",
+    "task_running": "Task running. ID: %s",
+    "task_cancelled": "Task cancelled. ID: %s",
+    "group_created": "Group created: %s",
+    "group_deleted": "Group deleted: %s",
+    "task_added_to_group": "Task added to group. Group: %s, Task ID: %s",
+    "group_running": "Group running: %s"
+  }
+}
